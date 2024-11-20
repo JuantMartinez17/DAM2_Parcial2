@@ -73,8 +73,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
 
-    // Room
     implementation("androidx.room:room-runtime:2.5.1")
     implementation("androidx.room:room-ktx:2.5.1")
-    
+    kapt("androidx.room:room-compiler:2.5.1")
 }
