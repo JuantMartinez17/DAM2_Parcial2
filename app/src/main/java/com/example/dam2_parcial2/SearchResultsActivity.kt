@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dam2_parcial2.adapter.QueryAdapter
 import com.example.dam2_parcial2.databinding.ActivitySearchResultsBinding
+import com.example.dam2_parcial2.model.Query
 import com.example.dam2_parcial2.model.QueryResponse
 import com.example.dam2_parcial2.model.RecipeDetail
 import kotlinx.coroutines.CoroutineScope
