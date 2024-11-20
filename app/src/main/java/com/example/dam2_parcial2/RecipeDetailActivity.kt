@@ -3,7 +3,9 @@ package com.example.dam2_parcial2
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dam2_parcial2.adapter.AppDatabase
 import com.example.dam2_parcial2.databinding.ActivityRecipeDetailBinding
+import com.example.dam2_parcial2.model.FavoriteRecipe
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,10 +14,19 @@ import com.example.dam2_parcial2.model.RecipeDetail
 class RecipeDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecipeDetailBinding
+    private lateinit var database: AppDatabase
+    private lateinit var favoriteRecipeDao: FavoriteRecipeDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        database = AppDatabase.getInstance(this)
+        favoriteRecipeDao = database.favoriteRecipeDao()
+
+       // val recipeDetail = intent.getParcelableExtra<RecipeDetail>("RECIPE_DETAIL")
+
         val apiKey = BuildConfig.MY_API_KEY
         val recipeId = intent.getIntExtra("RECIPE_ID", -1)
         if (recipeId != -1) {

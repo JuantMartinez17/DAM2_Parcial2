@@ -7,17 +7,17 @@ import com.example.dam2_parcial2.FavoriteRecipeDao
 import com.example.dam2_parcial2.model.FavoriteRecipe
 
 @Database(entities = [FavoriteRecipe::class], version = 1, exportSchema = false)
-abstract class AppDataBase: RoomDatabase() {
+abstract class AppDatabase: RoomDatabase() {
     abstract fun favoriteRecipeDao():FavoriteRecipeDao
     companion object {
         @Volatile
-        private var INSTANCE: AppDataBase? = null
+        private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: android.content.Context): AppDataBase {
+        fun getInstance(context: android.content.Context): AppDatabase {
             return INSTANCE ?: synchronized(this){
                 Room.databaseBuilder(
                     context.applicationContext,
-                    AppDataBase::class.java,
+                    AppDatabase::class.java,
                     "recipe_database"
                 ).build().also { INSTANCE = it }
             }
