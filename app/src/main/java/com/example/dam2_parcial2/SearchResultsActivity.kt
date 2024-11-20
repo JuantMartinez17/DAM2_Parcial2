@@ -25,7 +25,7 @@ class SearchResultsActivity : AppCompatActivity() {
         binding = ActivitySearchResultsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         queryAdapter = QueryAdapter(emptyList()) { query ->
-            val intent = Intent(this, RecipeDetail::class.java)
+            val intent = Intent(this, RecipeDetailActivity::class.java)
             intent.putExtra("RECIPE_ID", query.id)
             startActivity(intent)
         }

@@ -2,9 +2,103 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeDetail">
+    android:padding="16dp"
+    tools:context=".RecipeDetailActivity"
+    android:background="@android:color/background_light">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCalories"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="12dp">
+
+        <TextView
+            android:id="@+id/tvCalories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/caloriesText"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+             />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCarbs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/cardCalories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="12dp">
+
+        <TextView
+            android:id="@+id/tvCarbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/carbsText"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:textColor="@android:color/holo_orange_dark"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardFat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/cardCarbs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="12dp">
+
+        <TextView
+            android:id="@+id/tvFat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/fatText"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:textColor="@android:color/holo_green_dark"
+             />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardProtein"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/cardFat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="12dp">
+
+        <TextView
+            android:id="@+id/tvProtein"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/proteinText"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+             />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

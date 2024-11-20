@@ -4,4 +4,8 @@
     <string name="app_title">DAM2_Parcial2</string>
     <string name="ivItem_description">Descripcion de la imagen mostrada</string>
     <string name="tv_itemTitle">Item Title</string>
+    <string name="caloriesText" />
+    <string name="carbsText" />
+    <string name="fatText" />
+    <string name="proteinText" />
 </resources>
