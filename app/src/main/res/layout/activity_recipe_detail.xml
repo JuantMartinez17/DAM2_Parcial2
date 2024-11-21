@@ -83,7 +83,6 @@
                 android:gravity="center" />
         </androidx.cardview.widget.CardView>
 
-        <!-- Tarjeta: Carbohidratos -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"

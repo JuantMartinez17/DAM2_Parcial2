@@ -1,4 +1,4 @@
-package com.example.dam2_parcial2.view.activities.fragments
+package com.example.dam2_parcial2.view.fragments
 
 import FavoriteRecipesAdapter
 import android.content.Intent

@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dam2_parcial2.R
 import com.example.dam2_parcial2.databinding.ActivityMainBinding
-import com.example.dam2_parcial2.view.activities.fragments.FavoritesFragment
+import com.example.dam2_parcial2.view.fragments.FavoritesFragment
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {

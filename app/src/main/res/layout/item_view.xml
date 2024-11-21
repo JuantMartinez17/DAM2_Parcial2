@@ -16,7 +16,6 @@
         android:padding="8dp"
         android:background="@color/lightGreen">
 
-        <!-- Imagen cuadrada con bordes redondeados -->
         <ImageView
             android:id="@+id/ivItemImage"
             android:layout_width="100dp"
@@ -26,7 +25,6 @@
             android:background="@drawable/rounded_image_background"
             android:contentDescription="@string/ivItem_description" />
 
-        <!-- Contenedor del título -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -35,7 +33,6 @@
             android:layout_weight="1"
             android:gravity="center_vertical">
 
-            <!-- Título al lado de la imagen -->
             <TextView
                 android:id="@+id/tvItemTitle"
                 android:layout_width="wrap_content"

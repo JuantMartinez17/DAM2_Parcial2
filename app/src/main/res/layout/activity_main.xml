@@ -10,7 +10,7 @@
     android:background="@android:color/black"
     tools:context=".view.activities.MainActivity">
 
-    <!-- Bienvenido de nuevo con la imagen de usuario -->
+
     <LinearLayout
         android:id="@+id/welcomeLayout"
         android:orientation="horizontal"
@@ -20,7 +20,7 @@
         android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Imagen de usuario redonda -->
+
         <ImageView
             android:id="@+id/userImage"
             android:layout_width="60dp"
@@ -53,7 +53,6 @@
         android:layout_marginBottom="12dp"
         style="@style/CustomSearchViewStyle"/>
 
-    <!-- CardView para el botón de recetas favoritas -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_favRecipes"
         android:layout_width="0dp"
@@ -80,7 +79,6 @@
             android:layout_marginVertical="12dp" />
     </androidx.cardview.widget.CardView>
 
-    <!-- FragmentContainerView -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="0dp"

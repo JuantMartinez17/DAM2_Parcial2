@@ -25,7 +25,7 @@ class RecipeDetailActivity : AppCompatActivity() {
     private lateinit var database: AppDatabase
     private lateinit var favoriteRecipeDao: FavoriteRecipeDao
 
-    private var recipeDetail: RecipeDetail? = null // Para almacenar los detalles cargados
+    private var recipeDetail: RecipeDetail? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +90,6 @@ class RecipeDetailActivity : AppCompatActivity() {
             return
         }
 
-        // Agregar receta a favoritos
         val favoriteRecipe = FavoriteRecipe(
             recipeId = recipeId,
             title = title,
@@ -103,7 +102,6 @@ class RecipeDetailActivity : AppCompatActivity() {
             Log.d("RecipeDetailActivity", "Receta agregada a favoritos: $title, ID: $recipeId")
         }
 
-        // Actualizar lista de recetas favoritas
         val allFavorites = favoriteRecipeDao.getAllFavoriteRecipes()
         Log.d("RecipeDetailActivity", "Recetas en la base de datos: $allFavorites")
 
