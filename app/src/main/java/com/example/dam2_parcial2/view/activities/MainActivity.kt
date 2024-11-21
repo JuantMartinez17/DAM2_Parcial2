@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dam2_parcial2.R
 import com.example.dam2_parcial2.databinding.ActivityMainBinding
+import com.example.dam2_parcial2.view.activities.fragments.FavoritesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,5 +32,17 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
+
+        binding.btnFavorites.setOnClickListener{
+            favoritesFragmentInit()
+        }
+    }
+
+    private fun favoritesFragmentInit() {
+        val favoritesFragment = FavoritesFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, favoritesFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

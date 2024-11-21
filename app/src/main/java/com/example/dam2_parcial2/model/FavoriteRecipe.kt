@@ -8,5 +8,6 @@ data class FavoriteRecipe(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val recipeId: Int,
     val title: String,
-    val imageUrl: String,
+    val image: String,
+    val imageType: String,
 )
