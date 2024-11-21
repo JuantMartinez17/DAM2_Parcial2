@@ -17,4 +17,7 @@ interface FavoriteRecipeDao {
 
     @Query("SELECT * FROM favorite_recipes")
     suspend fun getAllFavoriteRecipes(): List<FavoriteRecipe>
+
+    @Query("DELETE FROM favorite_recipes")
+    fun deleteAllFavoriteRecipes()
 }

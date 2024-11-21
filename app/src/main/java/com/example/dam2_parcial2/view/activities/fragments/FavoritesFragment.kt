@@ -11,10 +11,16 @@ import com.example.dam2_parcial2.R
 import com.example.dam2_parcial2.databinding.FragmentFavoritesBinding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dam2_parcial2.adapter.AppDatabase
+import com.example.dam2_parcial2.data.FavoriteRecipeDao
 import com.example.dam2_parcial2.view.activities.RecipeDetailActivity
 import com.example.dam2_parcial2.viewmodel.FavoriteRecipesViewModel
 import com.example.dam2_parcial2.viewmodel.FavoriteRecipesViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,10 +37,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
     private lateinit var favoriteRecipesAdapter: FavoriteRecipesAdapter
-
-    private val viewModel: FavoriteRecipesViewModel by viewModels {
-        FavoriteRecipesViewModelFactory(requireActivity().application)
-    }
+    private val viewModel: FavoriteRecipesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +51,25 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentFavoritesBinding.bind(view)
 
+        // Limpiar los datos de la base de datos en un hilo de fondo
+        launchDeleteDataInBackground()
+
         setupRecyclerView()
 
         viewModel.favoriteRecipes.observe(viewLifecycleOwner, Observer { recipes ->
             favoriteRecipesAdapter.updateData(recipes)
         })
+    }
+
+
+    private fun launchDeleteDataInBackground() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val favoriteRecipeDao: FavoriteRecipeDao = AppDatabase.getInstance(requireContext()).favoriteRecipeDao()
+                favoriteRecipeDao.deleteAllFavoriteRecipes()
+            }
+        }
     }
 
     private fun setupRecyclerView() {
