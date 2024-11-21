@@ -47,12 +47,10 @@ class RecipeDetailActivity : AppCompatActivity() {
                 .into(binding.ivRecipeImage)
         }
 
-        // Agregar a favoritos al hacer clic en el botón
         binding.btnAddToFavorites.setOnClickListener {
             recipeId?.let { id ->
                 recipeTitle?.let { title ->
                     recipeImage?.let { image ->
-                        // Llamamos a la función suspendida en una coroutine
                         CoroutineScope(Dispatchers.Main).launch {
                             addToFavorites(id, title, image, "image_type_here")
                         }
@@ -83,8 +81,16 @@ class RecipeDetailActivity : AppCompatActivity() {
         })
     }
 
-    // Función para agregar una receta a favoritos utilizando los datos correctos
     private suspend fun addToFavorites(recipeId: Int, title: String, image: String, imageType: String) {
+        val existingRecipe = favoriteRecipeDao.getFavoriteRecipeById(recipeId)
+
+        if (existingRecipe != null) {
+
+            Log.d("RecipeDetailActivity", "La receta ya está en favoritos: $title, ID: $recipeId")
+            return
+        }
+
+        // Agregar receta a favoritos
         val favoriteRecipe = FavoriteRecipe(
             recipeId = recipeId,
             title = title,
@@ -92,12 +98,15 @@ class RecipeDetailActivity : AppCompatActivity() {
             imageType = imageType
         )
 
-        // Insertar en la base de datos en un hilo IO
         withContext(Dispatchers.IO) {
             favoriteRecipeDao.insertFavoriteRecipe(favoriteRecipe)
+            Log.d("RecipeDetailActivity", "Receta agregada a favoritos: $title, ID: $recipeId")
         }
 
-        // Mostrar mensaje en el hilo principal
+        // Actualizar lista de recetas favoritas
+        val allFavorites = favoriteRecipeDao.getAllFavoriteRecipes()
+        Log.d("RecipeDetailActivity", "Recetas en la base de datos: $allFavorites")
+
         withContext(Dispatchers.Main) {
             Toast.makeText(this@RecipeDetailActivity, "Receta agregada a favoritos", Toast.LENGTH_SHORT).show()
         }

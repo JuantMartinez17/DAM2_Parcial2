@@ -1,11 +1,18 @@
 package com.example.dam2_parcial2.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.dam2_parcial2.model.FavoriteRecipe
-import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.*
+import com.example.dam2_parcial2.adapter.AppDatabase
+import com.example.dam2_parcial2.data.FavoriteRecipeDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class FavoriteRecipesViewModel : ViewModel() {
+class FavoriteRecipesViewModel(private val favoriteRecipeDao: FavoriteRecipeDao) : AndroidViewModel(Application()) {
 
     private val _favoriteRecipes = MutableLiveData<List<FavoriteRecipe>>()
     val favoriteRecipes: LiveData<List<FavoriteRecipe>> get() = _favoriteRecipes
@@ -15,23 +22,8 @@ class FavoriteRecipesViewModel : ViewModel() {
     }
 
     private fun loadFavoriteRecipes() {
-        // Datos de prueba (puedes conectarlo a Room más adelante)
-        val sampleRecipes = listOf(
-            FavoriteRecipe(recipeId = 1, title = "Receta 1", image = "https://via.placeholder.com/150", imageType = "JPG"),
-            FavoriteRecipe(recipeId = 2, title = "Receta 2", image = "https://via.placeholder.com/150", imageType = "JPG")
-        )
-        _favoriteRecipes.value = sampleRecipes
-    }
-
-    fun addRecipe(recipe: FavoriteRecipe) {
-        val updatedList = _favoriteRecipes.value.orEmpty().toMutableList()
-        updatedList.add(recipe)
-        _favoriteRecipes.value = updatedList
-    }
-
-    fun removeRecipe(recipe: FavoriteRecipe) {
-        val updatedList = _favoriteRecipes.value.orEmpty().toMutableList()
-        updatedList.remove(recipe)
-        _favoriteRecipes.value = updatedList
+        viewModelScope.launch {
+            _favoriteRecipes.value = favoriteRecipeDao.getAllFavoriteRecipes()
+        }
     }
 }

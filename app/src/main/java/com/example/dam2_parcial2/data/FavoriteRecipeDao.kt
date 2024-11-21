@@ -8,12 +8,13 @@ import androidx.room.Query
 import com.example.dam2_parcial2.model.FavoriteRecipe
 @Dao
 interface FavoriteRecipeDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavoriteRecipe(favoriteRecipe: FavoriteRecipe)
+
+    @Insert
+    suspend fun insertFavoriteRecipe(recipe: FavoriteRecipe)
+
+    @Query("SELECT * FROM favorite_recipes WHERE recipeId = :recipeId LIMIT 1")
+    suspend fun getFavoriteRecipeById(recipeId: Int): FavoriteRecipe?
 
     @Query("SELECT * FROM favorite_recipes")
     suspend fun getAllFavoriteRecipes(): List<FavoriteRecipe>
-
-    @Delete
-    suspend fun deleteFavoriteRecipe(favoriteRecipe: FavoriteRecipe)
 }

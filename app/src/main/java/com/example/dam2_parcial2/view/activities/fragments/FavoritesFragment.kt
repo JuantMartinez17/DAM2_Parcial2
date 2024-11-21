@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dam2_parcial2.view.activities.RecipeDetailActivity
 import com.example.dam2_parcial2.viewmodel.FavoriteRecipesViewModel
+import com.example.dam2_parcial2.viewmodel.FavoriteRecipesViewModelFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +31,10 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
     private lateinit var favoriteRecipesAdapter: FavoriteRecipesAdapter
-    private val viewModel: FavoriteRecipesViewModel by viewModels()
+
+    private val viewModel: FavoriteRecipesViewModel by viewModels {
+        FavoriteRecipesViewModelFactory(requireActivity().application)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,15 +68,6 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FavoritesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             FavoritesFragment().apply {
