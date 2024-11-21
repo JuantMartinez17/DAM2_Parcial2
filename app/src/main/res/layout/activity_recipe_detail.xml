@@ -8,6 +8,29 @@
     tools:context=".view.activities.RecipeDetailActivity"
     android:background="@android:color/background_light">
 
+    <ImageView
+        android:id="@+id/ivRecipeImage"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvRecipeTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Recipe Title"
+        android:textSize="22sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/ivRecipeImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCalories"

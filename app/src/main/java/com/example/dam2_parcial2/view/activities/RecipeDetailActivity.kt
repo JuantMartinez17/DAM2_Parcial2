@@ -10,10 +10,14 @@ import com.example.dam2_parcial2.data.RetrofitClient
 import com.example.dam2_parcial2.adapter.AppDatabase
 import com.example.dam2_parcial2.databinding.ActivityRecipeDetailBinding
 import com.example.dam2_parcial2.model.FavoriteRecipe
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.dam2_parcial2.model.RecipeDetail
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class RecipeDetailActivity : AppCompatActivity() {
 
@@ -32,14 +36,28 @@ class RecipeDetailActivity : AppCompatActivity() {
         favoriteRecipeDao = database.favoriteRecipeDao()
 
         val recipeId = intent.getIntExtra("RECIPE_ID", -1)
-        if (recipeId != -1) {
+        val recipeTitle = intent.getStringExtra("RECIPE_TITLE")
+        val recipeImage = intent.getStringExtra("RECIPE_IMAGE")
+        if (recipeId != -1 && recipeTitle != null && recipeImage != null) {
             val apiKey = BuildConfig.MY_API_KEY
             getRecipeDetails(recipeId, apiKey)
+            binding.tvRecipeTitle.text = recipeTitle
+            Picasso.with(this)
+                .load(recipeImage)
+                .into(binding.ivRecipeImage)
         }
 
+        // Agregar a favoritos al hacer clic en el botón
         binding.btnAddToFavorites.setOnClickListener {
-            recipeDetail?.let { detail ->
-                addToFavorites(detail)
+            recipeId?.let { id ->
+                recipeTitle?.let { title ->
+                    recipeImage?.let { image ->
+                        // Llamamos a la función suspendida en una coroutine
+                        CoroutineScope(Dispatchers.Main).launch {
+                            addToFavorites(id, title, image, "image_type_here")
+                        }
+                    }
+                }
             }
         }
     }
@@ -65,22 +83,23 @@ class RecipeDetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun addToFavorites(recipeDetail: RecipeDetail) {
-        /* val favoriteRecipe = FavoriteRecipe(
-            recipeId = recipeDetail.id,
-            title = recipeDetail.title,
-            image = recipeDetail.image,
-            imageType = recipeDetail.imageType
+    // Función para agregar una receta a favoritos utilizando los datos correctos
+    private suspend fun addToFavorites(recipeId: Int, title: String, image: String, imageType: String) {
+        val favoriteRecipe = FavoriteRecipe(
+            recipeId = recipeId,
+            title = title,
+            image = image,
+            imageType = imageType
         )
 
-        // Insertar en la base de datos
-        Thread {
+        // Insertar en la base de datos en un hilo IO
+        withContext(Dispatchers.IO) {
             favoriteRecipeDao.insertFavoriteRecipe(favoriteRecipe)
-            runOnUiThread {
-                Toast.makeText(this, "Receta agregada a favoritos", Toast.LENGTH_SHORT).show()
-            }
-        }.start()
-    }
-}*/
+        }
+
+        // Mostrar mensaje en el hilo principal
+        withContext(Dispatchers.Main) {
+            Toast.makeText(this@RecipeDetailActivity, "Receta agregada a favoritos", Toast.LENGTH_SHORT).show()
+        }
     }
 }

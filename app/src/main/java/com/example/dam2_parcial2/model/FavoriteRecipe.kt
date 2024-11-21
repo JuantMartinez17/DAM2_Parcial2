@@ -9,5 +9,5 @@ data class FavoriteRecipe(
     val recipeId: Int,
     val title: String,
     val image: String,
-    val imageType: String,
+    val imageType: String
 )
