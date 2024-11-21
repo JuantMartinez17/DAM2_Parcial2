@@ -1,4 +1,4 @@
-package com.example.dam2_parcial2
+package com.example.dam2_parcial2.view.activities
 
 import android.content.Intent
 import android.os.Bundle

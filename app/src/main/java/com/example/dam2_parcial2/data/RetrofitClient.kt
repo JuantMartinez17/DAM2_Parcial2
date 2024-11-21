@@ -1,4 +1,4 @@
-package com.example.dam2_parcial2
+package com.example.dam2_parcial2.data
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

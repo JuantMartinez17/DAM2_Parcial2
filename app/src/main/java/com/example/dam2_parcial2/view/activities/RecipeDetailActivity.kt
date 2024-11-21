@@ -1,11 +1,13 @@
-package com.example.dam2_parcial2
+package com.example.dam2_parcial2.view.activities
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dam2_parcial2.BuildConfig
+import com.example.dam2_parcial2.data.FavoriteRecipeDao
+import com.example.dam2_parcial2.data.RetrofitClient
 import com.example.dam2_parcial2.adapter.AppDatabase
 import com.example.dam2_parcial2.databinding.ActivityRecipeDetailBinding
-import com.example.dam2_parcial2.model.FavoriteRecipe
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

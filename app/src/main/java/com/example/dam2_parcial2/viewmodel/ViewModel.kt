@@ -3,7 +3,7 @@ package com.example.dam2_parcial2.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dam2_parcial2.RetrofitClient
+import com.example.dam2_parcial2.data.RetrofitClient
 import com.example.dam2_parcial2.model.Query
 import kotlinx.coroutines.launch
 

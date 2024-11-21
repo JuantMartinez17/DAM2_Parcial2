@@ -1,4 +1,4 @@
-package com.example.dam2_parcial2
+package com.example.dam2_parcial2.data
 
 import com.example.dam2_parcial2.model.QueryResponse
 import com.example.dam2_parcial2.model.RecipeDetail

@@ -1,15 +1,15 @@
-package com.example.dam2_parcial2
+package com.example.dam2_parcial2.view.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dam2_parcial2.BuildConfig
+import com.example.dam2_parcial2.data.RetrofitClient
 import com.example.dam2_parcial2.adapter.QueryAdapter
 import com.example.dam2_parcial2.databinding.ActivitySearchResultsBinding
-import com.example.dam2_parcial2.model.Query
 import com.example.dam2_parcial2.model.QueryResponse
-import com.example.dam2_parcial2.model.RecipeDetail
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
