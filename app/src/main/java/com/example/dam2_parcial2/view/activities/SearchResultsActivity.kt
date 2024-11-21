@@ -27,6 +27,8 @@ class SearchResultsActivity : AppCompatActivity() {
         queryAdapter = QueryAdapter(emptyList()) { query ->
             val intent = Intent(this, RecipeDetailActivity::class.java)
             intent.putExtra("RECIPE_ID", query.id)
+            intent.putExtra("RECIPE_TITLE", query.title)
+            intent.putExtra("RECIPE_IMAGE", query.image)
             startActivity(intent)
         }
 

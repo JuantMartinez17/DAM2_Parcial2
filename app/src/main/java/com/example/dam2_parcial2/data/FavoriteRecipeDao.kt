@@ -9,9 +9,11 @@ import com.example.dam2_parcial2.model.FavoriteRecipe
 @Dao
 interface FavoriteRecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(recipe: FavoriteRecipe)
+    fun insertFavoriteRecipe(favoriteRecipe: FavoriteRecipe)
+
     @Query("SELECT * FROM favorite_recipes")
-    suspend fun getAll(): List<FavoriteRecipe>
+    fun getAllFavoriteRecipes(): List<FavoriteRecipe>
+
     @Delete
-    suspend fun delete(recipe: FavoriteRecipe)
+    fun deleteFavoriteRecipe(favoriteRecipe: FavoriteRecipe)
 }

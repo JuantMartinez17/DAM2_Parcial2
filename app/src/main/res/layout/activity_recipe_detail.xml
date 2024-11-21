@@ -101,6 +101,20 @@
              />
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/btnAddToFavorites"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Agregar a Favoritos"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cardProtein"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/cardview_light_background"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:elevation="4dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
