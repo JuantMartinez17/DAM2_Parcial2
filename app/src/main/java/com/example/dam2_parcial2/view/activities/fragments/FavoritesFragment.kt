@@ -51,12 +51,9 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentFavoritesBinding.bind(view)
 
-        // Inicializar el ViewModel con el Factory
         val factory = FavoriteRecipesViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this, factory).get(FavoriteRecipesViewModel::class.java)
 
-        // Limpiar los datos de la base de datos en un hilo de fondo
-        launchDeleteDataInBackground()
 
         setupRecyclerView()
 
