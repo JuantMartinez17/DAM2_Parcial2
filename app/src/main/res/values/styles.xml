@@ -1,0 +1,18 @@
+<resources>
+    <!-- Definir el estilo global para la fuente -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:fontFamily">@font/roboto_regular</item> <!-- Usamos el archivo roboto en fonts -->
+        <item name="android:textColorPrimary">@android:color/white</item> <!-- Color de texto blanco -->
+        <item name="android:background">@android:color/black</item> <!-- Fondo negro -->
+    </style>
+
+    <!-- Otros estilos específicos -->
+    <style name="ButtonStyle">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="CustomSearchViewStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColorHint">@android:color/black</item>
+    </style>
+</resources>

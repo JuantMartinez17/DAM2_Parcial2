@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dam2_parcial2.R
 import com.example.dam2_parcial2.databinding.ActivityMainBinding
 import com.example.dam2_parcial2.view.activities.fragments.FavoritesFragment
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Picasso.with(binding.userImage.context)
+            .load("https://ui-avatars.com/api/?name=User&background=000&color=fff&size=128")
+            .into(binding.userImage)
 
         binding.svIngredient.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

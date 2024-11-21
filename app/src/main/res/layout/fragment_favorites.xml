@@ -14,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_view" />
+        tools:listitem="@layout/item_view"
+        android:background="@color/lightGreen"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,31 +7,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@android:color/black"
     tools:context=".view.activities.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
+    <!-- Bienvenido de nuevo con la imagen de usuario -->
+    <LinearLayout
+        android:id="@+id/welcomeLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:title="@string/app_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Imagen de usuario redonda -->
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/user_image"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bienvenido_de_nuevo"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular" />
+
+    </LinearLayout>
 
     <SearchView
         android:id="@+id/svIngredient"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/rounded_searchview"
+        android:background="@drawable/searchview_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/welcomeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        style="@style/CustomSearchViewStyle"/>
 
+    <!-- CardView para el botón de recetas favoritas -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_favRecipes"
         android:layout_width="0dp"
@@ -50,6 +72,7 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_favorites"
             android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +80,7 @@
             android:layout_marginVertical="12dp" />
     </androidx.cardview.widget.CardView>
 
+    <!-- FragmentContainerView -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
@@ -65,6 +89,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites"
+        android:background="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.dam2_parcial2.R
 import com.example.dam2_parcial2.databinding.FragmentFavoritesBinding
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,7 +37,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
     private lateinit var favoriteRecipesAdapter: FavoriteRecipesAdapter
-    private val viewModel: FavoriteRecipesViewModel by viewModels()
+    private lateinit var viewModel: FavoriteRecipesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +51,10 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentFavoritesBinding.bind(view)
 
+        // Inicializar el ViewModel con el Factory
+        val factory = FavoriteRecipesViewModelFactory(requireActivity().application)
+        viewModel = ViewModelProvider(this, factory).get(FavoriteRecipesViewModel::class.java)
+
         // Limpiar los datos de la base de datos en un hilo de fondo
         launchDeleteDataInBackground()
 
@@ -61,9 +65,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         })
     }
 
-
     private fun launchDeleteDataInBackground() {
-
         viewLifecycleOwner.lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 val favoriteRecipeDao: FavoriteRecipeDao = AppDatabase.getInstance(requireContext()).favoriteRecipeDao()
